@@ -34,7 +34,7 @@ public class Main {
         Senha[] senhas = Arrays.copyOf(ordenacao.getData(), ordenacao.size());
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(saida))) {
             String linha = "";
-            ordenacao.selectionSortPorOcorrencia(senhas);
+            ordenacao.countSortAlfabetica(senhas,senhas.length-1);
             for (int i = 0; i < ordenacao.size(); i++) {
                 linha = senhas[i].getTam() + " " + senhas[i].getOcorrencias() + " " + senhas[i].getSenha();
                 bw.write(linha + "\n");
