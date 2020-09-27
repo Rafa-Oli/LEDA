@@ -44,8 +44,8 @@ public class Structure {
     }
 
 
+    // ----------------------------SELECTION SORT - OCORRÊNCIAS -------------------------------------------------
     public void selectionSortPorOcorrencia(Senha[] senhas) {
-
         int index;
         int max;
         int size = senhas.length;
@@ -55,18 +55,19 @@ public class Structure {
             for (index = 1; index < size; index++) {
                 if (senhas[max].getOcorrencias() < senhas[index].getOcorrencias()) max = index;
             }
-            swapSelectionSort(senhas, max, size - 1);
+            swapSelectionSortOcorrencias(senhas, max, size - 1);
             size--;
         }
 
     }
-
-    private void swapSelectionSort(Senha[] senhas, Integer max, Integer size) {
+    private void swapSelectionSortOcorrencias(Senha[] senhas, Integer max, Integer size) {
         Senha smallestNumber = senhas[max];
         senhas[max] = senhas[size];
         senhas[size] = smallestNumber;
     }
 
+
+    //--------------------------SELECTION SORT - ALFABÉTICA ------------------------------------------------
     public void selectionSortPorAlfabetica(Senha[] senhas) {
         int index;
         int max;
@@ -89,6 +90,8 @@ public class Structure {
     }
 
 
+    //--------------------------------INSERTION SORT - OCORRÊNCIAS -----------------------------------------------
+
     public void insertionSortPorOcorrencia(Senha[] data) {
         int n = data.length;
         for (int j = 1; j < n; j++) {
@@ -103,6 +106,8 @@ public class Structure {
 
     }
 
+
+    //------------------------------------INSERTION SORT - ALFABÉTICO -------------------------------------------------
     public void insertionSortPorAlfabetica(Senha[] senhas) {
         int size = senhas.length;
         for (int i = 1; i < size; i++) {
@@ -117,6 +122,8 @@ public class Structure {
     }
 
 
+
+    //----------------------------------MERGE SORT - OCORRÊNCIAS -------------------------------------------------
     public void mergeSortPorOcorrencia(Senha[] a, int n) {
         if (n < 2) {
             return;
@@ -133,10 +140,10 @@ public class Structure {
         }
         mergeSortPorOcorrencia(l, mid);
         mergeSortPorOcorrencia(r, n - mid);
-        merge(a, l, r, mid, n - mid);
+        mergeOcorrencias(a, l, r, mid, n - mid);
     }
 
-    public static void merge(Senha[] a, Senha[] l, Senha[] r, int left, int right) {
+    public static void mergeOcorrencias(Senha[] a, Senha[] l, Senha[] r, int left, int right) {
 
         int i = 0, j = 0, k = 0;
         while (i < left && j < right) {
@@ -154,6 +161,8 @@ public class Structure {
         }
     }
 
+
+    //-----------------------------------MERGE SORT - ALFABÉTICO ----------------------------------------------
     public void mergeSortPorAlfabetica(Senha[] a, int n) {
         if (n < 2) {
             return;
@@ -191,16 +200,18 @@ public class Structure {
         }
     }
 
+
+    // -----------------------------QUICK SORT - OCORRÊNCIAS ------------------------------------------------
     public void quickSortPorOcorrencia(Senha arr[], int begin, int end) {
         if (begin < end) {
-            int partitionIndex = partitionQuickSort(arr, begin, end);
+            int partitionIndex = partitionQuickSortOcorrencia(arr, begin, end);
 
             quickSortPorOcorrencia(arr, begin, partitionIndex - 1);
             quickSortPorOcorrencia(arr, partitionIndex + 1, end);
         }
     }
 
-    private int partitionQuickSort(Senha arr[], int begin, int end) {
+    private int partitionQuickSortOcorrencia(Senha arr[], int begin, int end) {
         Senha pivot = arr[end];
         int i = (begin - 1);
 
@@ -222,6 +233,7 @@ public class Structure {
     }
 
 
+    //-----------------------------------QUICK SORT - ALFABÉTICO---------------------------------------------
     public void quickSortPorOrdemAlfabetica(Senha arr[], int begin, int end) {
         if (begin < end) {
             int partitionIndex = partitionQuickSortPorOrdemAlfabetica(arr, begin, end);
@@ -253,19 +265,18 @@ public class Structure {
     }
 
 
-    public void quicksortMedianaDeTres(Senha[] A) {
-        quicksortMedianaDeTres(A, 0, A.length - 1);
+    //-----------------------------------QUICK SORT MEDIANA DE TRÊS - OCORRENCIAS ---------------------------------
+    public void quicksortMedianaDeTresOcorrencia(Senha[] A) {
+        quicksortMedianaDeTresOcorrencia(A, 0, A.length - 1);
     }
-
-    private static void quicksortMedianaDeTres(Senha[] A, int inicio, int fim) {
+    private static void quicksortMedianaDeTresOcorrencia(Senha[] A, int inicio, int fim) {
         if (inicio < fim) {
-            int q = partitionQuickMedianaDeTres(A, inicio, fim);
-            quicksortMedianaDeTres(A, inicio, q - 1);
-            quicksortMedianaDeTres(A, q + 1, fim);
+            int q = partitionQuickMedianaDeTresOcorrencia(A, inicio, fim);
+            quicksortMedianaDeTresOcorrencia(A, inicio, q - 1);
+            quicksortMedianaDeTresOcorrencia(A, q + 1, fim);
         }
     }
-
-    private static int partitionQuickMedianaDeTres(Senha[] A, int inicio, int fim) {
+    private static int partitionQuickMedianaDeTresOcorrencia(Senha[] A, int inicio, int fim) {
         int meio = (inicio + fim) / 2;
         Senha a = A[inicio];
         Senha b = A[meio];
@@ -298,31 +309,31 @@ public class Structure {
                 }
             }
         }
-        swapMedianaDeTres(A, medianaIndice, fim);
+        swapMedianaDeTresOcorrencia(A, medianaIndice, fim);
         Senha pivo = A[fim];
         int i = inicio - 1;
 
         for (int j = inicio; j <= fim - 1; j++) {
             if (A[j].getOcorrencias() <= pivo.getOcorrencias()) {
                 i = i + 1;
-                swapMedianaDeTres(A, i, j);
+                swapMedianaDeTresOcorrencia(A, i, j);
             }
         }
-        swapMedianaDeTres(A, i + 1, fim);
+        swapMedianaDeTresOcorrencia(A, i + 1, fim);
         return i + 1;
     }
 
-    private static void swapMedianaDeTres(Senha[] A, int i, int j) {
+    private static void swapMedianaDeTresOcorrencia(Senha[] A, int i, int j) {
         Senha temp = A[i];
         A[i] = A[j];
         A[j] = temp;
     }
 
+
+    //-----------------------------------QUICK SORT MEDIANA DE TRÊS - ALFABÉTICO -------------------------------------
     public void quicksortMedianaDeTresAlfabetica(Senha[] A) {
         quicksortMedianaDeTresAlfabetica(A, 0, A.length - 1);
     }
-
-
     private static void quicksortMedianaDeTresAlfabetica(Senha[] A, int inicio, int fim) {
         if (inicio < fim) {
             int q = partitionQuickMedianaDeTresAlfabetica(A, inicio, fim);
@@ -330,8 +341,6 @@ public class Structure {
             quicksortMedianaDeTresAlfabetica(A, q + 1, fim);
         }
     }
-
-
     private static int partitionQuickMedianaDeTresAlfabetica(Senha[] A, int inicio, int fim) {
         int meio = (inicio + fim) / 2;
         Senha a = A[inicio];
@@ -365,30 +374,29 @@ public class Structure {
                 }
             }
         }
-        swapMedianaDeTres(A, medianaIndice, fim);
+        swapMedianaDeTresAlfabetica(A, medianaIndice, fim);
         Senha pivo = A[fim];
         int i = inicio - 1;
 
         for (int j = inicio; j <= fim - 1; j++) {
             if (A[j].getSenha().compareTo(pivo.getSenha()) <= 0) {
                 i = i + 1;
-                swapMedianaDeTres(A, i, j);
+                swapMedianaDeTresAlfabetica(A, i, j);
             }
         }
-        swapMedianaDeTres(A, i + 1, fim);
+        swapMedianaDeTresAlfabetica(A, i + 1, fim);
         return i + 1;
     }
-
     private static void swapMedianaDeTresAlfabetica(Senha[] A, int i, int j) {
         Senha temp = A[i];
         A[i] = A[j];
         A[j] = temp;
     }
 
+
+    //-----------------------------------COUNTING SORT - OCORRENCIAS -------------------------------------
     void countSort(Senha array[], int size) {
         Senha[] output = new Senha[size + 1];
-
-
         Senha max = array[0];
         for (int i = 1; i < size; i++) {
             if (array[i].getOcorrencias() > max.getOcorrencias())
@@ -423,41 +431,81 @@ public class Structure {
         }
     }
 
-    void countSortAlfabetica(Senha array[], int size) {
-        Senha[] output = new Senha[size + 1];
-        Senha max = array[0];
-        for (int i = 1; i < size; i++) {
-            if (array[i].getTam() > max.getTam())
-                max = array[i];
-        }
-        int[] count = new int[max.getTam() + 1];
 
+    //-----------------------------------HEAPSORT - OCORRENCIAS -------------------------------------
+    public void heapSortOcorrencias(Senha arr[]){
+        int n = arr.length;
 
-        for (int i = 0; i < max.getTam(); ++i) {
-            count[i] = 0;
-        }
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapifyOcorrencias(arr, n, i);
 
+        for (int i=n-1; i>0; i--) {
+            Senha temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
 
-        for (int i = 0; i < size; i++) {
-            count[array[i].getSenha().length()]++;
-        }
-
-
-        for (int i = 1; i <= max.getTam(); i++) {
-            count[i] += count[i - 1];
-        }
-
-
-        for (int i = size - 1; i >= 0; i--) {
-            output[count[array[i].getTam()] - 1] = array[i];
-            count[array[i].getTam()]--;
-        }
-
-
-        for (int i = 0; i < size; i++) {
-            array[i] = output[i];
+            heapifyOcorrencias(arr, i, 0);
         }
     }
+    void heapifyOcorrencias(Senha arr[], int n, int i) {
+        int largest = i; // Initialize largest as root
+        int l = 2*i + 1; // left = 2*i + 1
+        int r = 2*i + 2; // right = 2*i + 2
+
+        if (l < n && arr[l].getOcorrencias()  > arr[largest].getOcorrencias()) {
+            largest = l;
+        }
+        if (r < n && arr[r].getOcorrencias()  > arr[largest].getOcorrencias()) {
+            largest = r;
+        }
+        if (largest != i){
+            Senha swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            heapifyOcorrencias(arr, n, largest);
+        }
+    }
+
+
+
+    //-----------------------------------HEAPSORT - ALFABÉTICO -------------------------------------
+    public void heapSortAlfabetico(Senha arr[]){
+        int n = arr.length;
+
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapifyAlfabetico(arr, n, i);
+
+        for (int i=n-1; i>0; i--) {
+            Senha temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            heapifyAlfabetico(arr, i, 0);
+        }
+    }
+    void heapifyAlfabetico(Senha arr[], int n, int i) {
+        int largest = i; // Initialize largest as root
+        int l = 2*i + 1; // left = 2*i + 1
+        int r = 2*i + 2; // right = 2*i + 2
+
+        if (l < n && arr[l].getSenha().compareTo(arr[largest].getSenha()) > 0) {
+            largest = l;
+        }
+        if (r < n && arr[r].getSenha().compareTo(arr[largest].getSenha()) > 0) {
+            largest = r;
+        }
+        if (largest != i){
+            Senha swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            heapifyAlfabetico(arr, n, largest);
+        }
+    }
+
+
+
 
 
 

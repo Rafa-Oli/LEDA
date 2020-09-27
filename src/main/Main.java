@@ -18,7 +18,6 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
             String line = "";
             line = br.readLine();
-
             while (line != null) {
                 String[] lines = line.split(" ");
 
@@ -34,12 +33,12 @@ public class Main {
         Senha[] senhas = Arrays.copyOf(ordenacao.getData(), ordenacao.size());
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(saida))) {
             String linha = "";
-            ordenacao.countSortAlfabetica(senhas,senhas.length-1);
+            ordenacao.heapSortOcorrencias(senhas);
             for (int i = 0; i < ordenacao.size(); i++) {
                 linha = senhas[i].getTam() + " " + senhas[i].getOcorrencias() + " " + senhas[i].getSenha();
                 bw.write(linha + "\n");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.getStackTrace();
         }
 

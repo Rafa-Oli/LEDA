@@ -17,17 +17,14 @@ public class Senha {
 
     void setSenha(String senha) {
         this.senha = senha;
-
     }
 
     void setTam(int tam) {
         this.tam = tam;
-
     }
 
     void setOcorrencias(int ocorrencias) {
         this.ocorrencias = ocorrencias;
-
     }
 
     @Override
@@ -45,14 +42,15 @@ public class Senha {
         return Objects.hash(senha, tam, ocorrencias);
     }
 
-    String getSenha(){
+    String getSenha() {
         return senha;
     }
-   int getTam(){
+
+    int getTam() {
         return tam;
     }
 
-    int getOcorrencias(){
+    int getOcorrencias() {
         return ocorrencias;
     }
 }
